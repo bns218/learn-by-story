@@ -1,0 +1,6 @@
+out/
+en_story/
+node_modules/
+*.mp4
+*.wav
+__pycache__/
