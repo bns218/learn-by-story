@@ -1,3 +1,7 @@
+> **Repo note:** older parts of this file (gen.mjs, brandkit.py, 510 concepts, 170-230 words, 1-2 page notes) are
+> superseded by style_plates.md, studynotes.md, research.md, progress.md and the repo's CLAUDE.md. Fresh-container setup is
+> now `scripts/setup.sh`; Kokoro narration is `scripts/tts.py` (speed 1.06); paths default to `<repo>/work`.
+
 # Daily video pipeline (AI/ML/DL concept story videos)
 
 **BRAND (user decision): the YouTube channel and Instagram page are called "Learn AI by Story".** Use it everywhere: the in-video series label (the `#series` text in gen.mjs, currently "AI · ML · DL STORIES") becomes "LEARN AI BY STORY"; every LinkedIn post and Reels/Shorts caption ends with a short line "Learn AI by Story: one concept, one story, every day" and the hashtag #LearnAIbyStory; study notes docs carry the line "Learn AI by Story" under the title.

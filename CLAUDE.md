@@ -3,6 +3,11 @@
 This repo turns one roadmap of 315 AI/ML/DL concepts into short story videos for the
 "Learn AI by Story" YouTube channel and Instagram page, 5 concepts per batch.
 
+## Any single concept
+Say "make a video on <concept>" (a roadmap ID like `1.22` or free text like "attention"). The `concept-video` skill
+researches it, writes the story script (`stories/<id>-<slug>.mjs`), narrates, builds, checks and renders the video, and
+writes the study notes, posts (LinkedIn, YouTube, Instagram), thumbnail and Reels cover into `out/<id>/`.
+
 ## How to run a batch
 Say "run the next batch" (or `/concept-batch`). The `concept-batch` skill reads
 `project/progress.md`, picks the next 5 IDs, and hands each stage to a sub-agent:
@@ -16,6 +21,16 @@ Say "run the next batch" (or `/concept-batch`). The `concept-batch` skill reads
 | 5. Posting kit | `posting-kit` | `social-copywriter` |
 | 6. Progress + generator save | `progress-update` | (main session) |
 
+## Commands (paths default to `work/`, git-ignored)
+```
+setsid nohup bash scripts/setup.sh > work/setup.log 2>&1 &          # fresh container, ~3 min
+STORIES_FILE=stories/<file>.mjs MODE=scripts node project/gen_plates.mjs
+python3 scripts/tts.py                                               # Kokoro af_heart, speed 1.06
+STORIES_FILE=stories/<file>.mjs LANG_MODE=en node project/gen_plates.mjs
+bash scripts/check.sh                                                # 0 lint / 0 layout / 0 craft
+setsid nohup bash scripts/render.sh > work/render.log 2>&1 &        # one MP4 at a time, prints durations
+```
+
 ## Source of truth (in this order)
 1. `project/progress.md` — which IDs are next, what is done, STYLE BY BATCH, OPENING RULE
 2. `project/research.md` — mandatory research rule + preferred books
@@ -26,7 +41,9 @@ Where `pipeline.md` conflicts with the files above it, the files above win.
 
 ## Hard rules
 - Never use `gen_v2.mjs` or `gen.mjs`. Batches 7–12 (IDs 1.22–1.51) use `gen_plates.mjs`;
-  batch 13 onward (2.01+) uses `gen_ref.mjs`.
+  batch 13 onward (2.01+) uses `gen_ref.mjs` — not in the repo yet, so use plates until it is added.
+- Put specs in `stories/*.mjs` (from `stories/TEMPLATE.mjs`); don't edit the inline STORIES array in the generator.
+- Changes made here stay in this GitHub repo; don't write to the Claude Project or edit the scheduled task.
 - Finish Module 1 (1.22–1.51, strict order) before Module 2; Module 2 starts AT 2.01 (remade full length).
 - Every video: vertical 1080x1920, English, longer than 62 s (target 95–115 s),
   narration 280–316 words, first line "Today's topic: <concept>." then the hook,

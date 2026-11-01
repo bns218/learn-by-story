@@ -5,13 +5,17 @@ description: Run one full batch of the Learn AI by Story pipeline — 5 concept 
 
 # Concept batch (orchestrator)
 
+For ONE concept the user names, use the `concept-video` skill instead. Start `scripts/setup.sh` in the background first
+(see `episode-video`).
+
 You coordinate; the sub-agents do the stage work. Work unattended: never stop to ask.
 
 ## 0. Read state (yourself, in this order)
 1. `project/progress.md` — the 5 IDs for this batch, the batch number, STYLE BY BATCH, OPENING RULE, extra docs owed.
 2. `project/research.md`, then the style files for this batch:
    - batches 7–12 (IDs 1.22–1.51): `style_plates.md` + `gen_plates.mjs` + `brandkit_plates.py`
-   - batch 13+ (2.01 onward): `style_ref.md` + `gen_ref.mjs` + `brandkit_plates.py`
+   - batch 13+ (2.01 onward): `style_ref.md` + `gen_ref.mjs` + `brandkit_plates.py` — NOT in the repo yet;
+     until they are added to `project/`, use the plates style and note it in `progress.md`
    - never `gen_v2.mjs` / `gen.mjs`
 3. `pipeline.md`, `studynotes.md`, `endcard.md`.
 

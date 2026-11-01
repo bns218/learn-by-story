@@ -5,7 +5,8 @@ Chosen by the user after reviewing six reference videos: hand-drawn character + 
 ## Generator
 - Use `claude/gen_plates.mjs` (NOT gen_v2.mjs, NOT gen.mjs). Write it to /home/claude/ai-ml-reels/gen_plates.mjs, replace ONLY the `const STORIES = [ ... ];` array each day (keep the library above and the build loop below). It already contains: end card (3.2 s tail, 2.35 s hold of the last line), LEARN AI BY STORY label on every plate, left-sliding scene seams, whoosh sound effects at seams, chime on the end card, synthesized background music pad, grain-free flat plates, caption chips (dark rounded chip behind every caption word so captions read on any colour).
 - Build command: `MODE=scripts node gen_plates.mjs` (writes scripts.json), Kokoro wavs to en_story/<key>_s<i>.wav, then `LANG_MODE=en node gen_plates.mjs`.
-- ROOT in the file is /home/claude/ai-ml-reels (keep that directory). TEMPLATE is /tmp/hf-smoke/demo (see progress.md tips).
+- ROOT defaults to `<repo>/work` (override with REELS_ROOT); TEMPLATE defaults to /tmp/hf-smoke/demo (HF_TEMPLATE). In the repo,
+  put each concept's specs in `stories/<file>.mjs` and pass `STORIES_FILE=stories/<file>.mjs` instead of editing the inline array.
 
 ## Scene builders (all take `th` = plate colour theme: "blue" | "yellow" | "cream" | "black" | "orange", and `n` = plate number out of the scene count; the plate label says "PLATE n/9", change `total = 9` default in `plate()` if you use a different scene count)
 - `pHook({th, n, title, sub, mood})`: big title, italic subtitle, hand-drawn character on a hill line. Use for scene 1.

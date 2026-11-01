@@ -2,9 +2,12 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+import { fileURLToPath, pathToFileURL } from "url";
 
-const ROOT = "/home/claude/ai-ml-reels";
-const TEMPLATE = "/tmp/hf-smoke/demo";
+// Paths: override with REELS_ROOT / HF_TEMPLATE. Default ROOT is <repo>/work (git-ignored).
+const ROOT = process.env.REELS_ROOT || path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "work");
+const TEMPLATE = process.env.HF_TEMPLATE || "/tmp/hf-smoke/demo";
+for (const d of ["en_story", "final"]) fs.mkdirSync(path.join(ROOT, d), { recursive: true });
 const LANG = process.env.LANG_MODE || "en";
 const C = { bg: "#0A0F1F", panel: "#131A33", line: "#232C52", ink: "#F5F7FF", mute: "#8D97B8", cyan: "#22D3EE", amber: "#FBBF24", pink: "#FB7185", green: "#34D399", violet: "#A78BFA" };
 const dur = (f) => parseFloat(execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 "${f}"`).toString());
@@ -210,7 +213,7 @@ const pEnd = (o) => (D, P) => {
 const RM = [6.0, 5.0, 5.0, 5.25, 5.0, 5.0, 5.14, 4.75, 4.33, 4.1, 3.91, 4.08, 4.23, 4.0, 3.93, 4.0, 3.82, 3.89, 3.74, 3.7, 3.76, 3.68, 3.65, 3.58, 3.64, 3.58, 3.67, 3.64, 3.62, 3.63, 3.65, 3.66, 3.67, 3.74, 3.77, 3.81, 3.84, 3.84, 3.82, 3.88, 3.85, 3.81, 3.86, 3.8, 3.84, 3.85, 3.79, 3.73, 3.71, 3.66, 3.61, 3.62, 3.66, 3.65, 3.67, 3.71, 3.74, 3.74, 3.73, 3.73];
 const rmf = (x) => { const k = Math.min(RM.length - 1, Math.max(0, x - 1)); const a = Math.floor(k), b = Math.min(RM.length - 1, a + 1); return RM[a] + (RM[b] - RM[a]) * (k - a); };
 const bin = (p) => (p <= 0 || p >= 1 ? 0 : -(p * Math.log2(p) + (1 - p) * Math.log2(1 - p)));
-const STORIES = [
+const STORIES_INLINE = [
   /* ---------- 1.12 Sampling and the law of large numbers ---------- */
   { id: "ep-1.12-law-of-large-numbers", key: "p112", n: 312, scenes: [
     pHook({ th: "yellow", n: 1, title: "Roll it<br/>again", sub: "Dev rolls a die and wonders what the average roll really is.", mood: "think" }),
@@ -322,6 +325,12 @@ const STORIES = [
     "Remember: convex means one bottom. Neural networks have many valleys, saddles and plateaus, yet gradient descent usually finds a good one. Next, vector norms. Study notes are in the bio.",
   ] },
 ];
+// STORIES_FILE=stories/<id>.mjs loads episode specs from a separate file instead of the inline array.
+// The file default-exports a function that receives the scene-builder library and returns the STORIES array.
+const LIB = { plate, pTitle, pTitleJs, agent, pHook, pBig, pChart, pTable, pSigns, pGrid, pEnd, TH, C, T, f1, DASH };
+const STORIES = process.env.STORIES_FILE
+  ? (await import(pathToFileURL(path.resolve(process.env.STORIES_FILE)).href)).default(LIB)
+  : STORIES_INLINE;
 if (process.env.MODE === "scripts") {
   fs.writeFileSync(path.join(ROOT, "scripts.json"), JSON.stringify(STORIES.map((s) => ({ key: s.key, lines: s.en })), null, 1));
   process.exit(0);

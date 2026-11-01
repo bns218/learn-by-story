@@ -1,8 +1,35 @@
 # Progress
+> **Repo copy (GitHub `bns218/learn-by-story`).** Paths: `claude/<file>` in this text = `project/<file>` here. In this repo,
+> read and write files directly (no Projects tool); generators write to `work/` (git-ignored); each concept's spec lives in
+> `stories/<file>.mjs` loaded with `STORIES_FILE`; setup/TTS/check/render are `scripts/*.sh|py`. This copy was taken on
+> 2026-11-01 after batch 6. The rules below (OPENING RULE, MODULE PLAN, STYLE BY BATCH) come from the scheduled task's
+> prompt, because they were added to the Claude Project after this copy was made.
+
 **READ FIRST: claude/style_plates.md (CURRENT house style) and use claude/gen_plates.mjs (not gen_v2.mjs, not gen.mjs). style_plates.md overrides style_v2.md and pipeline.md where they differ. studynotes.md: notes must be 4-6 pages, 2,000+ words, and end with "Sources and further reading". claude/research.md is MANDATORY: research each concept from 2+ reliable sources (WebSearch/WebFetch) BEFORE writing specs/notes, verify numbers in Python, keep a research log, put 2-3 source links in the LinkedIn post and YouTube description.**
 Order: strict roadmap ID order. The Roadmap Docs artifact is https://claude.ai/artifact/KhbB3q3ge5bb6NdAmEoGjQ (a Docs doc: read it with mcp__Claude_Docs__read {ref:{object:"project",id:"976f4e83-a47c-4203-8a53-f0a594b0e477"}} (ref only, no container) then read {ref:{object:"node",id:"a5aefbd6-1a9e"}, container:{kind:"project",id:"976f4e83-a47c-4203-8a53-f0a594b0e477"}}; the result is huge and is saved to a file; grep it with python for `<bold>1.12</bold>` etc.).
 User decision: the 14 earlier short videos (0.01-0.10 era) are discarded in the sense that every concept is made fresh at full length; 0.01-0.10 already have docs + kits from batches 1-2.
 Pace: 5 videos per day, each LONGER than one minute (target 95-115 s). 3 s end card automatic.
+
+## OPENING RULE (user requirement 2026-11-01, every video from batch 7 on)
+Every video STARTS by stating today's topic: the first narration line begins "Today's topic: <concept name in plain words>."
+followed immediately by the story's hook, and scene 1 shows the concept name and ID from the first second (plates: in the
+hook plate's big title and title block; reference style: a visible headline or HUD line, e.g. "TODAY: 2.05 Loss functions:
+MSE, MAE, Huber"). Scene 1 still opens on the character's story; total narration stays 280-316 words.
+
+## MODULE PLAN (user decision)
+Finish Module 1 first: IDs 1.22-1.51 in strict order (next is 1.22 Orthogonality and projections). Only then start Module 2
+at 2.01, INCLUDING 2.01, remade full length.
+
+## STYLE BY BATCH
+- Batches 7-12 (Module 1, IDs 1.22-1.51): PLATES style = style_plates.md + gen_plates.mjs + brandkit_plates.py.
+- Batch 13 onward (2.01+): REFERENCE style = style_ref.md + gen_ref.mjs (builders rDiorama, rBoard, rHud, rTerm, rPoster,
+  rKinetic, rReddit, rNested, rEndcard taking (D, P, o); each STORIES entry needs a `caps` array; 8-9 scenes ending with
+  rEndcard) + brandkit_plates.py for thumbnails/covers. NOTE: style_ref.md and gen_ref.mjs are not in this repo yet; add
+  them to project/ before batch 13, otherwise use the plates style.
+- Never use gen_v2.mjs or gen.mjs.
+
+## Ad-hoc videos (single concepts made with the concept-video skill, outside the batch order)
+- (none yet)
 
 ## Already made
 - Batch 1 (2026-10-27): 0.01-0.05. Batch 2 (2026-10-28): 0.06-0.10. Batch 3 (2026-10-29): 1.01-1.06 (docs + kit https://claude.ai/artifact/Jecg2J3AwJy3RrC5PXyGHa).

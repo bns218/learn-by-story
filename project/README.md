@@ -1,17 +1,20 @@
-# project/ — pipeline state and generators
+# project/ — pipeline rules, state and generators
 
-Copy these files here from the Claude Project "AI ML DL Concepts videos" (`claude/` folder).
-They are not in the repo yet; the skills read them from this folder.
+Copied from the Claude Project "AI ML DL Concepts videos" (`claude/` folder) on 2026-11-01, after batch 6, then edited to
+run from this repo. Changes here stay in this GitHub repo; the Claude Project and the daily scheduled task are separate.
 
-| File | Purpose |
-| --- | --- |
-| `progress.md` | Authoritative state: next 5 IDs, done list, STYLE BY BATCH, OPENING RULE |
-| `research.md` | Mandatory research rule + preferred books and how to open them |
-| `pipeline.md` | Brand, LENGTH RULE, fresh-container setup |
-| `studynotes.md` | Study-notes length rule (min 4 pages / ~2,000 words) and structure |
-| `endcard.md` | End card spec (already built into the generators) |
-| `style_plates.md` + `gen_plates.mjs` | PLATES style, batches 7–12 (IDs 1.22–1.51) |
-| `style_ref.md` + `gen_ref.mjs` | REFERENCE style, batch 13+ (2.01 onward) |
-| `brandkit_plates.py` | Thumbnails (1280x720) and Reels covers (1080x1920) |
+| File | Purpose | Edited for the repo |
+| --- | --- | --- |
+| `progress.md` | Done list, next IDs, OPENING RULE, MODULE PLAN, STYLE BY BATCH, ad-hoc videos, tips | Repo note + the three rules restored from the scheduled task prompt |
+| `research.md` | Mandatory research rule + preferred books | — |
+| `studynotes.md` | Study notes: min 4 pages / ~2,000 words, Sources at the end | — |
+| `style_plates.md` | PLATES house style, scene builders, design rules | Paths |
+| `gen_plates.mjs` | Video generator (plates style) | ROOT/TEMPLATE from env (default `<repo>/work`), `STORIES_FILE` support |
+| `brandkit_plates.py` | Thumbnails 1280x720 + Reels covers 1080x1920 | — |
+| `endcard.md` | 3 s end card (already built into the generator) | — |
+| `pipeline.md` | Brand, original pipeline (partly superseded) | Note on what is superseded |
+
+**Missing:** `style_ref.md` and `gen_ref.mjs` (reference style for batch 13+, 2.01 onward) could not be recovered.
+`gen_plates.mjs` is the version from the start of the batch-6 run, so it lacks the `pShapes` unit-ball builder batch 6 added.
 
 Roadmap (315 concepts): https://claude.ai/artifact/KhbB3q3ge5bb6NdAmEoGjQ
