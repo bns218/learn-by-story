@@ -1,4 +1,4 @@
-# learn-ai-by-story
+# learn-by-story
 
 Claude Code skills and sub-agents that produce the "Learn AI by Story" concept videos:
 research → story video → study notes → thumbnail/cover → posting kit → progress update.
